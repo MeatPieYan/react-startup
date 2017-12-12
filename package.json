@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config ./webpack/webpack.dev.js",
-    "build": "webpack --config ./webpack/webpack.prod.js",
-    "node": "node ./server/bin/dev"
+    "dev": "nodemon ./server/bin/dev --watch server --watch webpack --watch view",
+    "build:dev": "webpack --config ./webpack/webpack.dev.js",
+    "build": "webpack --config ./webpack/webpack.prod.js --env.production"
   },
   "repository": {
     "type": "git",
@@ -27,16 +27,33 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
+    "ejs": "^2.5.7",
+    "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
+    "kafka-node": "^2.3.0",
     "koa": "^2.4.1",
     "koa-router": "^7.3.0",
+    "koa-static": "^4.0.2",
+    "koa-views": "^6.1.2",
+    "nunjucks": "^3.0.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
+    "react-router-config": "^1.0.0-beta.4",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "socket.io": "^2.0.4",
+    "uglifyjs-webpack-plugin": "^1.1.1",
     "webpack": "^3.8.1",
     "webpack-merge": "^4.1.1"
   },
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
+    "html-webpack-harddisk-plugin": "^0.1.0",
+    "koa-convert": "^1.2.0",
+    "koa-webpack-dev-middleware": "^2.0.2",
+    "koa-webpack-hot-middleware": "^1.0.3",
+    "nodemon": "^1.12.1",
     "webpack-dev-server": "^2.9.4"
   }
 }
