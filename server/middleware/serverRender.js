@@ -2,6 +2,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import { renderRoutes, matchRoutes } from 'react-router-config';
+import { Provider } from 'react-redux';
+import store from '../../shared/store';
 
 import routes from '../../client/routers'; // import the static client routers
 
@@ -35,12 +37,14 @@ const serverRender = () => async (ctx, next) => {
   const renderHtmlString = async (inititalDataArr) => {
     const context = {};
     const html = renderToString(
-      <StaticRouter
-        location={ctx.request.url}
-        context={context}
-      >
-        {renderRoutes(routes)}
-      </StaticRouter>
+      <Provider store={store}>
+        <StaticRouter
+          location={ctx.request.url}
+          context={context}
+        >
+          {renderRoutes(routes)}
+        </StaticRouter>
+      </Provider>
     );
 
     /* ***************************** */
@@ -52,7 +56,8 @@ const serverRender = () => async (ctx, next) => {
 
     // function render is added into ctx via PKG koa-views
     await ctx.render('index', {
-      root: html
+      root: html,
+      state: store.getState()
     });
   };
 
@@ -76,7 +81,7 @@ const serverRender = () => async (ctx, next) => {
       :
       Promise.resolve(null)));
 
-  // render html string after all the promise resolved.
+  // render html string after all the promise resol ved.
   await Promise.all(promises)
     .then(renderHtmlString)
     .catch((err) => {
