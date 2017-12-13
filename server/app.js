@@ -8,22 +8,22 @@ import serve from 'koa-static';
 import router from './router';
 import serverRender from './middleware/serverRender';
 
-import {kafkaProducer, kafkaConsumer} from './kafka';
+// import { kafkaProducer, kafkaConsumer } from './kafka';
 
 const app = new Koa();
 
 const server = http.createServer(app.callback());
 const io = socket(server);
-io.on('connection', socket => {
-  console.log('new connection');
+io.on('connection', (sk) => {
+  // console.log('new connection');
 
-  socket.on('post', (data, cb) => {
-      console.log(data)
-      io.emit("message", data);
+  sk.on('post', (data) => {
+    // console.log(data);
+    io.emit('message', data);
   });
 
-  socket.on('disconnect', () => {
-      console.log('some one disconnect');
+  sk.on('disconnect', () => {
+    // console.log('some one disconnect');
   });
 });
 
@@ -37,7 +37,6 @@ io.on('connection', socket => {
 // }, 5000);
 
 
-
 app.use(views(path.resolve(__dirname, '../dist'), {
   map: {
     html: 'ejs'
@@ -47,7 +46,6 @@ app.use(views(path.resolve(__dirname, '../dist'), {
   .use(router.routes())
   .use(router.allowedMethods())
   .use(serve(path.resolve(__dirname, '../dist')));
-  
 
 
 export default { app, server };

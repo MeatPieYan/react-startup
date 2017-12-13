@@ -7,8 +7,8 @@ import routes from './routers';
 
 const html = (
   <BrowserRouter>
-  {renderRoutes(routes)}
-</BrowserRouter>
+    {renderRoutes(routes)}
+  </BrowserRouter>
 )
 
 ReactDOM.render(

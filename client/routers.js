@@ -1,28 +1,26 @@
 import React from 'react';
-import { renderRoutes } from 'react-router-config';
 import App from './App';
 import TestComp from './test';
 
-const Home = ({ route }) => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)
-const Home2 = ({ route }) => (
+
+const Home2 = () => (
   <div>
     <h2>12312dasfaaaaa</h2>
   </div>
-)
+);
 
 const routes = [
-  { component: App,
+  {
+    component: App,
     routes: [
-      { path: '/test',
-      exact: true,
+      {
+        path: '/test',
+        exact: true,
         component: TestComp
       },
-      { path: '/abc',
-      exact: true,
+      {
+        path: '/abc',
+        exact: true,
         component: Home2
       }
     ]

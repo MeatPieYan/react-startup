@@ -7,8 +7,7 @@ let subRouter;
 
 fs.readdirSync(__dirname)
   .filter(filename =>
-    filename !== path.basename(__filename)
-  )
+    filename !== path.basename(__filename))
   .forEach((filename) => {
     /* eslint-disable */
     subRouter = require(`./${filename}`);

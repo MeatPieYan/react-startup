@@ -8,7 +8,7 @@ const path = require('path');
 module.exports = merge(baseConfig, {
   entry: {
     app: [
-      "./client/index.js",
+      './client/index.js',
       'webpack-hot-middleware/client?reload=true'
     ]
   },

@@ -9,11 +9,11 @@ import routes from '../../client/routers'; // import the static client routers
 /**
  * server side render middleware for koa
  *
- * this function will return a koa2 middleware which is used to 
+ * this function will return a koa2 middleware which is used to
  * render the whole dom structure of the first screen from server
  * side
- * 
- * @param    void       
+ *
+ * @param    void
  * @returns  { function }  which is the koa middleware function, like async(ctx, next) => {}
  *
  * @date     2017-12-12
@@ -28,7 +28,7 @@ const serverRender = () => async(ctx, next) => {
    * ------------------------------------------------------------------
    */
   const isNotRootRoute = ({ match }) => match.path !== '/';
-  
+
   /**
    * ------------------------------------------------------------------
    * render a html string contains the matched route
@@ -60,7 +60,7 @@ const serverRender = () => async(ctx, next) => {
   // get all matched Routes & filter the one which is not the root one('/')
   const matchedRouter = matchRoutes(routes, ctx.request.url).filter(isNotRootRoute);
 
-  // if there is no router matched, 
+  // if there is no router matched,
   // then exit the current middleware,
   // and call the next koa middleware
   if (!Array.isArray(matchedRouter) || matchedRouter.length === 0) {
@@ -71,14 +71,14 @@ const serverRender = () => async(ctx, next) => {
   // and get the Function loadInitialData from the related component,
   // and excute them if existed,
   // and return the array of promise
-  const promises = matchedRouter.map(({ route, match }) => 
-    route.component.loadInitialData instanceof Function ? 
-      route.component.loadInitialData() 
-      : 
+  const promises = matchedRouter.map(({ route, match }) =>
+    route.component.loadInitialData instanceof Function ?
+      route.component.loadInitialData()
+      :
       Promise.resolve(null)
   );
 
-  // render html string after all the promise resolved. 
+  // render html string after all the promise resolved.
   await Promise.all(promises)
     .then(renderHtmlString)
     .catch((err) => {
