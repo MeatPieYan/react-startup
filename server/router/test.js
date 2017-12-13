@@ -4,7 +4,6 @@ import Router from 'koa-router';
 const router = new Router();
 const testRouter = new Router({ prefix: '/test' });
 testRouter.get('/producer', async (ctx, next) => {
-
   // const payloads = [{
   //   topic: 'tac-flying-phoenix-user-message-2176',
   //   messages: 'hello 123123'
