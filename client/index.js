@@ -9,13 +9,15 @@ const html = (
   <BrowserRouter>
     {renderRoutes(routes)}
   </BrowserRouter>
-)
+);
 
 ReactDOM.render(
   html,
+  /* eslint-disable */
   document.getElementById('root')
+  /* eslint-enable */
 );
 
 if (module.hot) {
-  module.hot.accept()
+  module.hot.accept();
 }

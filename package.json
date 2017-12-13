@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./server/bin/dev --watch server --watch webpack --watch view",
+    "build": "webpack --config ./webpack/webpack.prod.js --env.production",
     "build:dev": "webpack --config ./webpack/webpack.dev.js",
-    "build": "webpack --config ./webpack/webpack.prod.js --env.production"
+    "dev": "nodemon ./server/bin/dev --watch server --watch webpack --watch view",
+    "eslint": "./node_modules/.bin/eslint . --ext .js",
+    "eslint:fix": "./node_modules/.bin/eslint . --ext .js --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.2",
     "nunjucks": "^3.0.1",
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",

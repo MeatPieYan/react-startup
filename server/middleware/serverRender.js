@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router-dom/StaticRouter';
-import { matchPath } from 'react-router-dom';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 
 import routes from '../../client/routers'; // import the static client routers
@@ -19,8 +18,7 @@ import routes from '../../client/routers'; // import the static client routers
  * @date     2017-12-12
  * @author   yanzhenggang<robinyzg@hotmail.com>
  */
-const serverRender = () => async(ctx, next) => {
-
+const serverRender = () => async (ctx, next) => {
   /**
    * ------------------------------------------------------------------
    * this is a filter used for Array.prototype.filter
@@ -35,7 +33,7 @@ const serverRender = () => async(ctx, next) => {
    * ------------------------------------------------------------------
    */
   const renderHtmlString = async (inititalDataArr) => {
-    let context = {};
+    const context = {};
     const html = renderToString(
       <StaticRouter
         location={ctx.request.url}
@@ -43,19 +41,20 @@ const serverRender = () => async(ctx, next) => {
       >
         {renderRoutes(routes)}
       </StaticRouter>
-    )
+    );
 
     /* ***************************** */
     /*          if NECESSARY         */
     /*    TODO: context handler      */
     /* TODO: inititalDataArr handler */
     /* ***************************** */
+    console.log(inititalDataArr);
 
     // function render is added into ctx via PKG koa-views
     await ctx.render('index', {
       root: html
     });
-  }
+  };
 
   // get all matched Routes & filter the one which is not the root one('/')
   const matchedRouter = matchRoutes(routes, ctx.request.url).filter(isNotRootRoute);
@@ -71,23 +70,21 @@ const serverRender = () => async(ctx, next) => {
   // and get the Function loadInitialData from the related component,
   // and excute them if existed,
   // and return the array of promise
-  const promises = matchedRouter.map(({ route, match }) =>
-    route.component.loadInitialData instanceof Function ?
+  const promises = matchedRouter.map(({ route }) =>
+    (route.component.loadInitialData instanceof Function ?
       route.component.loadInitialData()
       :
-      Promise.resolve(null)
-  );
+      Promise.resolve(null)));
 
   // render html string after all the promise resolved.
   await Promise.all(promises)
     .then(renderHtmlString)
     .catch((err) => {
-
       /* ***************************** */
       /*      TODO: error handler      */
       /* ***************************** */
-      console.log(err)
+      console.log(err);
     });
-}
+};
 
 export default serverRender;

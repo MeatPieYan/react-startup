@@ -3,7 +3,7 @@ import React from 'react';
 
 class TestComp extends React.Component {
   static loadInitialData() {
-    console.log('123aaa')
+    console.log('123aaa');
   }
 
   render() {
@@ -11,7 +11,7 @@ class TestComp extends React.Component {
       <div>
         <h2>aaa</h2>
       </div>
-    )
+    );
   }
 }
 
