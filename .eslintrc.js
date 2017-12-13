@@ -9,6 +9,7 @@ module.exports = {
     "comma-dangle": ["error", "never"],
     "consistent-return": ["off"],
     "function-paren-newline": ["off"],
+    "import/no-dynamic-require": ["off"],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.js", "**/*.dev.**.js", "**/*.dev.js"]}],
     "jsx-quotes": ["error", "prefer-single"],
     "max-len": ["error", { "code": 200 }],
