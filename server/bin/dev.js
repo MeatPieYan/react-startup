@@ -16,7 +16,7 @@ const compiler = webpack(webpackConfig);
 
 // const { app, server } = require('../app');
 
-const Pie = require('../../lib/framework/server');
+const {Pie} = require('za-pie');
 const app = new Pie({configPath: path.resolve(__dirname, '../../config')});
 
 // add webpack-dev-server for development env

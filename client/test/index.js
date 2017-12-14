@@ -9,7 +9,7 @@ class TestComp extends React.Component {
   render() {
     return (
       <div>
-        <h2>123123</h2>
+        <h2>aaa</h2>
       </div>
     );
   }
