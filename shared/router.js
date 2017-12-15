@@ -1,11 +1,11 @@
 import React from 'react';
-import App from './App';
-import TestComp from './test';
+import App from '../client/App';
+import TestComp from '../client/test';
 
 
 const Home2 = () => (
   <div>
-    <h2>12312dasfaaaaa</h2>
+    <h2>111</h2>
   </div>
 );
 

@@ -3,13 +3,13 @@ import React from 'react';
 
 class TestComp extends React.Component {
   static loadInitialData() {
-    console.log('123aaa');
+    console.log('ddd');
   }
 
   render() {
     return (
       <div>
-        <h2>aaa</h2>
+        <h2>ccc</h2>
       </div>
     );
   }
