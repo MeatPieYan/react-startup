@@ -1,6 +1,6 @@
 import React from 'react';
 import App from '../client/App';
-import TestComp from '../client/test';
+import TestComp from './pages/test';
 
 
 const Home2 = () => (

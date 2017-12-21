@@ -12,7 +12,7 @@ module.exports = merge(baseConfig, {
     path: path.resolve(__dirname, '../dist')
   },
   plugins: [
-    // new UglifyJSPlugin(),
+    new UglifyJSPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../view/index.html')
     })
