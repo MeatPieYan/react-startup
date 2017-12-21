@@ -22,6 +22,12 @@ module.exports = {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
+      name: 'tac',
+      minChunks(module) {
+        return /node_modules\/(za-piedom)/.test(module.userRequest || '');
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity
     })
@@ -29,7 +35,7 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: /node_modules/,
+      exclude: /node_modules\/(?!za-piedom)/,
       loader: 'babel-loader'
     }, {
       test: /\.html$/,

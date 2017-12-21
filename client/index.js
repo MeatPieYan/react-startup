@@ -1,28 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
-import { Provider } from 'react-redux';
-import routes from './routers';
-import storeCreator from './redux/store/createStore';
+import PieDom from 'za-piedom';
+import routers from '../shared/router';
+import reducer from '../shared/rootReducer';
+import saga from '../shared/rootSaga';
 
-// create store with initial state for server rendering
-const store = storeCreator(window.REDUX_STATE);
-
-const html = (
-  <Provider store={store}>
-    <BrowserRouter>
-      {renderRoutes(routes)}
-    </BrowserRouter>
-  </Provider>
-);
-
-ReactDOM.render(
-  html,
-  /* eslint-disable */
-  document.getElementById('root')
-  /* eslint-enable */
-);
+PieDom.render('root', routers, reducer, saga);
 
 if (module.hot) {
   module.hot.accept();
