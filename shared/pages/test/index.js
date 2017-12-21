@@ -6,6 +6,7 @@ import { PieComponent, pieConnect } from 'za-piehelper';
 
 import * as action from './action';
 import rootSaga from '../../rootSaga';
+import * as style from './style.scss';
 
 class TestComp extends PieComponent {
   static loadInitialData(store) {
@@ -19,7 +20,7 @@ class TestComp extends PieComponent {
   render() {
     return (
       <div>
-        <h2>{this.props.test}</h2>
+        <h2 className={style.color}>{this.props.test}</h2>
       </div>
     );
   }

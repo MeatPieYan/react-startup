@@ -1,5 +1,5 @@
 import React from 'react';
-import App from '../client/App';
+import App from './pages/App';
 import TestComp from './pages/test';
 
 

@@ -5,6 +5,18 @@ require('babel-register')({
   plugins: ['add-module-exports']
 });
 
+// scss compiler hook
+require('css-modules-require-hook')({
+  extensions: ['.scss'],
+  preprocessCss: (data, filename) =>
+      require('node-sass').renderSync({
+          data,
+          file: filename
+      }).css,
+  camelCase: true,
+  generateScopedName: '[name]__[local]__[hash:base64:8]'
+});
+
 const webpack = require('webpack');
 const webpackConfig = require('../../webpack/webpack.dev');
 const webpackDevMiddleware = require('koa-webpack-dev-middleware');
@@ -14,10 +26,7 @@ const path = require('path');
 
 const compiler = webpack(webpackConfig);
 
-// const { app, server } = require('../app');
-
 const Pie = require('za-pie');
-// const app = new Pie({configPath: path.resolve(__dirname, '../../config')});
 const app = new Pie(path.resolve(__dirname, '../../'));
 
 // add webpack-dev-server for development env
