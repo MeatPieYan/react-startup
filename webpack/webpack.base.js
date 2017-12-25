@@ -21,12 +21,12 @@ module.exports = {
         return module.context && module.context.indexOf('node_modules') !== -1;
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'tac',
-      minChunks(module) {
-        return /node_modules\/(za-piedom)/.test(module.userRequest || '');
-      }
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'tac',
+    //   minChunks(module) {
+    //     return /node_modules\/(za-piedom)/.test(module.userRequest || '');
+    //   }
+    // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity
