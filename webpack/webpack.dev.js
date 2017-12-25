@@ -21,9 +21,34 @@ module.exports = merge(baseConfig, {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../view/index.html'),
+      template: path.resolve(__dirname, '../view/template.html'),
+      filename: '../index.html',
       alwaysWriteToDisk: true
     }),
     new HtmlWebpackHarddiskPlugin()
-  ]
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              module: true,
+              localIdentName: '[path][name]__[local]'
+            }
+          },
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              module: true
+            }
+          }
+        ]
+      }
+    ]
+  }
 });

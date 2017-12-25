@@ -14,7 +14,7 @@ require('css-modules-require-hook')({
           file: filename
       }).css,
   camelCase: true,
-  generateScopedName: '[name]__[local]__[hash:base64:8]'
+  generateScopedName: '[path][name]__[local]'
 });
 
 const webpack = require('webpack');

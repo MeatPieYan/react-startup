@@ -9,7 +9,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: path.resolve(__dirname, '../dist')
+    publicPath: '/'
   },
   plugins: [
     new CleanWebpackPlugin(['dist'], {
@@ -40,24 +40,6 @@ module.exports = {
     }, {
       test: /\.html$/,
       loader: 'html-loader'
-    }, {
-      test: /\.scss$/,
-      use: [
-        {
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader',
-          options: {
-            module: true,
-            localIdentName: '[name]__[local]__[hash:base64:8]'
-          }
-        }, {
-          loader: 'sass-loader',
-          options: {
-            module: true
-          }
-        }
-      ]
     }]
   }
 };

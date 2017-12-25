@@ -1,4 +1,4 @@
-import Router from 'koa-router';
+const Router = require('koa-router');
 
 
 const router = new Router();
@@ -18,4 +18,4 @@ testRouter.get('/producer', async (ctx, next) => {
 );
 router.use(testRouter.routes());
 
-export default router;
+module.exports = router;
